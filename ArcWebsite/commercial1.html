@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ARC Studio Interiors | The Art of Connecting</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800&family=Mrs+Saint+Delafield&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+<link rel="preload" href="fonts/ProximaNova-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/ProximaNova-Bold.woff2" as="font" type="font/woff2" crossorigin>
+
+<!-- Proxima Nova (Self Hosted) -->
+<style>
+@font-face {
+    font-family: 'Proxima Nova';
+    src: url('fonts/ProximaNova-Regular.woff2') format('woff2');
+    font-weight: 400;
+}
+@font-face {
+    font-family: 'Proxima Nova';
+    src: url('fonts/ProximaNova-Bold.woff2') format('woff2');
+    font-weight: 700;
+}
+.herotext{
+    font-family: 'Proxima Nova', sans-serif;
+    color: burlywood;
+}
+/* FONT APPLY */
+body {
+    font-family: 'Proxima Nova', sans-serif;
+    color: #333;
+}
+
+h1, h2, h3 {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.nav-font {
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+}
+
+/* HERO */
+.hero-bg {
+    
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    transition: background-image 1s ease-in-out;
+
+}
+.hero-bg {
+    position: relative;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    transition: background-image 1s ease-in-out;
+}
+
+.hero-bg::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45); /* overlay strength */
+    z-index: 1;
+}
+
+/* Hero content above overlay */
+.hero-bg > div {
+    position: relative;
+    z-index: 2;
+}
+
+
+/* MENU OVERLAY */
+#menuOverlay {
+    transform: translateY(-100%);
+    transition: transform 0.6s cubic-bezier(0.77,0,0.175,1);
+}
+#menuOverlay.active {
+    transform: translateY(0);
+}
+
+/* Header hide/show animation */
+#mainHeader {
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+</style>
+</head>
+
+<body class="overflow-x-hidden bg-white">
+
+<!-- ================= HEADER ================= -->
+<header id="mainHeader"
+class="fixed top-0 left-0 w-full z-[100] px-6 md:px-12 py-2 flex justify-between items-center nav-font transition-all duration-300 main-page text-white">
+
+    <a href="index.html" id="logoText" class="text-2xl font-semibold uppercase tracking-tight">
+        <img src="images/logo rs.png" alt="" class="logo">
+    </a>
+
+    <!-- DESKTOP NAV -->
+    <nav class="hidden lg:flex items-center gap-10 text-[15px] uppercase font-medium">
+        <a href="property-style.html">Residence</a>
+        <a href="interior-design.html">Interior Design</a>
+        <a href="commercial.html">Commercial</a>
+        <a href="contact-us.html">Contact Us</a>
+
+        <!-- DOT MENU -->
+        <button onclick="toggleMenu()" class="grid grid-cols-3 gap-1 w-5 h-5">
+            <span class="dot w-1 h-1 bg-black"></span>
+            <span class="dot w-1 h-1 bg-black"></span>
+            <span class="dot w-1 h-1 bg-black"></span>
+            <span class="dot w-1 h-1 bg-black"></span>
+            <span class="dot w-1 h-1 bg-black"></span>
+            <span class="dot w-1 h-1 bg-black"></span>
+            <span class="dot w-1 h-1 bg-black"></span>
+            <span class="dot w-1 h-1 bg-black"></span>
+            <span class="dot w-1 h-1 bg-black"></span>
+        </button>
+    </nav>
+
+    <!-- MOBILE -->
+    <button onclick="toggleMenu()" id="mobileBtn" class="lg:hidden">
+        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+    </button>
+</header>
+
+<!-- ================= MENU OVERLAY ================= -->
+<div id="menuOverlay" class="fixed inset-0 z-[90] bg-white flex">
+
+    <!-- CLOSE BUTTON -->
+    <button onclick="toggleMenu()" class="absolute top-6 right-6 z-[999] text-black cursor-pointer hover:opacity-70">
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+    </button>
+
+    <!-- MOBILE MENU (shown on small screens) -->
+    <div class="mobile-menu" aria-hidden="true">
+        <div class="mobile-top" style="display:flex;align-items:center;justify-content:space-between;">
+            <a href="index.html"><img src="images/logo rs.png" alt="BOWERBIRD" class="logo"></a>
+            <button onclick="toggleMenu()" class="mobile-close-dot" aria-label="Close menu">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="3" y="3" width="3" height="3" fill="#000" />
+                    <rect x="10.5" y="3" width="3" height="3" fill="#000" />
+                    <rect x="18" y="3" width="3" height="3" fill="#000" />
+                    <rect x="3" y="10.5" width="3" height="3" fill="#000" />
+                    <rect x="10.5" y="10.5" width="3" height="3" fill="#000" />
+                    <rect x="18" y="10.5" width="3" height="3" fill="#000" />
+                    <rect x="3" y="18" width="3" height="3" fill="#000" />
+                    <rect x="10.5" y="18" width="3" height="3" fill="#000" />
+                    <rect x="18" y="18" width="3" height="3" fill="#000" />
+                </svg>
+            </button>
+        </div>
+
+        <nav class="mobile-links">
+            <a href="property-style.html">Property Styling</a>
+            <a href="interior-design.html">Interior Design</a>
+            <a href="commercial.html">Commercial</a>
+            <a href="arcgallery.html">Our Work</a>
+            <a href="about-us.html">About Us</a>
+            <a href="pay-on-settlement.html">Pay on Settlement</a>
+            <a href="media.html">Media</a>
+            <a href="giving-back.html">Giving Back</a>
+            <a href="blog.html">Blog</a>
+            <a href="contact-us.html">Contact Us</a>
+        </nav>
+
+        <div class="socials">
+            <a href="https://www.instagram.com/arcstudiointeriors/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/company/110110164/admin/dashboard/" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://www.facebook.com/profile.php?id=61584589380668" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://x.com/ArcstudioRs" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            
+        </div>
+    </div>
+
+    <!-- LEFT -->
+<div class="grid grid-cols-1 md:grid-cols-4 flex-grow min-h-[300px]">
+    
+    <div class="group relative flex flex-col items-center justify-center border-r overflow-hidden cursor-pointer bg-white">
+        <div class="absolute inset-0 bg-cover bg-center opacity-20 group-hover:opacity-100 transition-all duration-700 z-0" 
+             style="background-image: url('images/abdin/f3.png');"></div>
+        
+        <div class="relative z-10 flex flex-col items-center group-hover:text-white transition-colors duration-500">
+            <span class="text-2xl italic"><a href="property-style.html">Residence</a></span>
+            <span class="text-3xl text-gray-300 mt-4 group-hover:text-white">+</span>
+        </div>
+    </div>
+
+    <div class="group relative flex flex-col items-center justify-center border-r overflow-hidden cursor-pointer bg-white">
+        <div class="absolute inset-0 bg-cover bg-center opacity-20 group-hover:opacity-100 transition-all duration-700 z-0" 
+             style="background-image: url('images/1.jpg');"></div>
+        
+        <div class="relative z-10 flex flex-col items-center group-hover:text-white transition-colors duration-500">
+            <span class="text-2xl italic"><a href="interior-design.html">Interior Design</a></span>
+            <span class="text-3xl text-gray-300 mt-4 group-hover:text-white">+</span>
+        </div>
+    </div>
+
+    <div class="group relative flex flex-col items-center justify-center border-r overflow-hidden cursor-pointer bg-white">
+        <div class="absolute inset-0 bg-cover bg-center opacity-20 group-hover:opacity-100 transition-all duration-700 z-0" 
+             style="background-image: url('images/wetransfer_1-jpg_2022-05-17_1303/wetransfer_2-psd_2022-06-11_1159/11.jpg');"></div>
+        
+        <div class="relative z-10 flex flex-col items-center group-hover:text-white transition-colors duration-500">
+            <span class="text-2xl italic"><a href="commercial.html">Commercial</a></span>
+            <span class="text-3xl text-gray-300 mt-4 group-hover:text-white">+</span>
+        </div>
+    </div>
+
+    <div class="group relative flex flex-col items-center justify-center overflow-hidden cursor-pointer bg-white">
+        <div class="absolute inset-0 bg-cover bg-center opacity-20 group-hover:opacity-100 transition-all duration-700 z-0" 
+             style="background-image: url('images/chalopakistan/3.jpg');"></div>
+        
+        <div class="relative z-10 flex flex-col items-center group-hover:text-white transition-colors duration-500">
+            <span class="text-2xl italic"><a href="furniture.html">Furniture Design</a></span>
+            <span class="text-3xl text-gray-300 mt-4 group-hover:text-white">+</span>
+        </div>
+    </div>
+
+</div>
+
+    
+
+    <!-- RIGHT PANEL -->
+    <div class="w-full md:w-[380px] bg-[#abbec9] p-14 flex flex-col justify-between">
+        <div>
+            <div class="text-2xl font-semibold uppercase mb-24">
+                <a href="index.html"><img src="images/logo rs.png" alt="" class="logo"></a>
+            </div>
+            <nav class="flex flex-col gap-6 pt-32 text-[16px] uppercase tracking-[0.2em] font-bold">
+    <a href="about-us.html" class="px-4 py-2 border border-transparent hover:border-black hover:bg-black hover:text-white transition-all duration-300 w-max">
+        About Us
+    </a>
+
+   
+
+    <a href="giving-back.html" class="px-4 py-2 border border-transparent hover:border-black hover:bg-black hover:text-white transition-all duration-300 w-max">
+        Giving Back
+    </a>
+
+    <a href="arcgallery.html" class="px-4 py-2 border border-transparent hover:border-black hover:bg-black hover:text-white transition-all duration-300 w-max">
+        Arc Gallery
+    </a>
+
+    <a href="blog.html" class="px-4 py-2 border border-transparent hover:border-black hover:bg-black hover:text-white transition-all duration-300 w-max">
+        Blog
+    </a>
+
+    <a href="contact-us.html" class="px-4 py-2 border border-black bg-black text-white hover:bg-transparent hover:text-black transition-all duration-300 w-max">
+        Contact Us
+    </a>
+</nav>
+            <!-- <nav class="flex flex-col gap-8 pt-32 text-[16px] uppercase tracking-[0.2em] font-bold">
+                <a href="#">About Us</a>
+                <a href="#">Pay on Settlement</a>
+                <a href="#">Media</a>
+                <a href="#">Giving Back</a>
+                <a href="#">Arc Gallery</a>
+                <a href="#">Blog</a>
+                <a href="#" class="border-b w-max">Contact Us</a>
+            </nav> -->
+        </div>
+    </div>
+
+</div>
+
+<!-- 
+<style>
+    /* Naye projects halke se ooper aayenge */
+    @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-project {
+        animation: fadeInUp 0.6s ease forwards;
+    }
+    /* Tailwind ki hidden class ko manually define kar rahe hain agar tailwind load na ho */
+    .hidden { display: none !important; }
+</style> -->
+
+<section class="projects-gallery-section">
+    <div class="gallery-container mx-auto p-6 pt-[7%]">
+        
+        <div id="projectsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+            
+            <div class="project-card group cursor-pointer">
+                <div class="relative overflow-hidden rounded-lg shadow-md h-80 mb-4">
+                    <img src="images/commerical/9.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" onclick="openFullImage(this.src)">
+                </div>
+                <!-- <div class="px-1"><h3 class="font-bold uppercase">The MayFair</h3><p class="text-gray-500 text-xs italic">Residential Style</p></div> -->
+            </div>
+            <div class="project-card group cursor-pointer">
+                <div class="relative overflow-hidden rounded-lg shadow-md h-80 mb-4">
+                    <img src="images/commerical/1.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" onclick="openFullImage(this.src)">
+                </div>
+                <!-- <div class="px-1"><h3 class="font-bold uppercase">The MayFair</h3><p class="text-gray-500 text-xs italic">Residential Style</p></div> -->
+            </div>
+            <div class="project-card group cursor-pointer">
+                <div class="relative overflow-hidden rounded-lg shadow-md h-80 mb-4">
+                    <img src="images/commerical/2.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" onclick="openFullImage(this.src)">
+                </div>
+                <!-- <div class="px-1"><h3 class="font-bold uppercase">The MayFair</h3><p class="text-gray-500 text-xs italic">Residential Style</p></div> -->
+            </div>
+            <div class="project-card group cursor-pointer">
+                <div class="relative overflow-hidden rounded-lg shadow-md h-80 mb-4">
+                    <img src="images/commerical/3.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" onclick="openFullImage(this.src)">
+                </div>
+                <!-- <div class="px-1"><h3 class="font-bold uppercase">The MayFair</h3><p class="text-gray-500 text-xs italic">Residential Style</p></div> -->
+            </div>
+            <div class="project-card group cursor-pointer">
+                <div class="relative overflow-hidden rounded-lg shadow-md h-80 mb-4">
+                    <img src="images/commerical/2.webp" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" onclick="openFullImage(this.src)">
+                </div>
+                <!-- <div class="px-1"><h3 class="font-bold uppercase">The MayFair</h3><p class="text-gray-500 text-xs italic">Residential Style</p></div> -->
+            </div>
+            <div class="project-card group cursor-pointer">
+                <div class="relative overflow-hidden rounded-lg shadow-md h-80 mb-4">
+                    <img src="images/commerical/5.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" onclick="openFullImage(this.src)">
+                </div>
+                <!-- <div class="px-1"><h3 class="font-bold uppercase">The MayFair</h3><p class="text-gray-500 text-xs italic">Residential Style</p></div> -->
+            </div>
+            <div class="project-card extra-project hidden group cursor-pointer">
+                <div class="relative overflow-hidden rounded-lg shadow-md h-80 mb-4">
+                    <img src="images/commerical/6.jpg" class="w-full h-full object-cover" onclick="openFullImage(this.src)">
+                </div>
+                <!-- <div class="px-1"><h3 class="font-bold uppercase">New Project 7</h3><p class="text-gray-500 text-xs italic">Modern Office</p></div> -->
+            </div>
+            <div class="project-card extra-project hidden group cursor-pointer">
+                <div class="relative overflow-hidden rounded-lg shadow-md h-80 mb-4">
+                    <img src="images/commerical/7.png" class="w-full h-full object-cover" onclick="openFullImage(this.src)">
+                </div>
+                <!-- <div class="px-1"><h3 class="font-bold uppercase">New Project 8</h3><p class="text-gray-500 text-xs italic">Studio Space</p></div> -->
+            </div>
+            <div class="project-card extra-project hidden group cursor-pointer">
+                <div class="relative overflow-hidden rounded-lg shadow-md h-80 mb-4">
+                    <img src="images/commerical/8.png" class="w-full h-full object-cover" onclick="openFullImage(this.src)">
+                </div>
+                <!-- <div class="px-1"><h3 class="font-bold uppercase">New Project 9</h3><p class="text-gray-500 text-xs italic">Cafe Interior</p></div> -->
+            </div>
+
+        </div>
+
+        <div class="flex justify-center mt-16">
+            <button id="loadMoreBtn" class="border-2 border-black px-10 py-3 text-xs font-black tracking-widest hover:bg-black hover:text-white transition-all">
+                VIEW MORE PROJECTS
+            </button>
+        </div>
+    </div>
+</section>
+
+<div id="fullScreenModal" class="fixed inset-0 bg-black/95 z-[10000] hidden flex items-center justify-center" onclick="closeFullImage()">
+    <img id="modalImage" src="" class="max-w-full max-h-[90vh] object-contain">
+</div>
+
+<script>
+    // LOAD MORE LOGIC
+    document.getElementById('loadMoreBtn').addEventListener('click', function() {
+        // Sirf un cards ko pakrein jin par 'extra-project' aur 'hidden' dono hain
+        const hiddenProjects = document.querySelectorAll('.extra-project.hidden');
+        
+        // Loop jo sirf 3 items dikhayega
+        for (let i = 0; i < 3; i++) {
+            if (hiddenProjects[i]) {
+                hiddenProjects[i].classList.remove('hidden');
+                hiddenProjects[i].classList.add('animate-project');
+            }
+        }
+
+        // Agar saare projects dikh gaye to button gayab
+        const remaining = document.querySelectorAll('.extra-project.hidden').length;
+        if (remaining === 0) {
+            this.style.display = 'none';
+        }
+    });
+
+    // LIGHTBOX LOGIC
+    function openFullImage(src) {
+        const modal = document.getElementById('fullScreenModal');
+        const modalImg = document.getElementById('modalImage');
+        modal.classList.remove('hidden');
+        modalImg.src = src;
+    }
+    function closeFullImage() {
+        document.getElementById('fullScreenModal').classList.add('hidden');
+    }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="fullScreenModal" class="fixed inset-0 bg-black/95 z-[10000] hidden flex items-center justify-center p-5" onclick="closeFullImage()">
+    <button class="absolute top-8 right-8 text-white text-5xl font-light">&times;</button>
+    <img id="modalImage" src="" class="max-w-full max-h-[90vh] object-contain shadow-2xl animate-fade-in">
+</div>
+         
+        </div>
+    </div>
+</section>
+
+
+  <section class="contact-section">
+        <div class="section-header p-4">
+            <span class="header-line"></span>
+            <span class="header-label">Get in touch</span>
+        </div>
+        <div class="contact-intro p-4">
+            <h2 class="title-small ">Want to speak to one of our experienced team? drop us your details below.</h2>
+        </div>
+
+        <form name="service-form" method="POST" data-netlify="true" class="contact-form-box">
+
+            <!-- Netlify required hidden field -->
+            <input type="hidden" name="form-name" value="service-form">
+
+            <div class="form-grid">
+
+                <div class="input-group">
+                    <label>FIRST NAME</label>
+                    <input type="text" name="first_name" placeholder="required" required>
+                </div>
+
+                <div class="input-group">
+                    <label>LAST NAME</label>
+                    <input type="text" name="last_name" placeholder="required" required>
+                </div>
+
+                <div class="input-group">
+                    <label>PHONE NUMBER</label>
+                    <input type="tel" name="phone" placeholder="required" required>
+                </div>
+
+                <div class="input-group">
+                    <label>EMAIL</label>
+                    <input type="email" name="email" placeholder="required" required>
+                </div>
+
+                <div class="input-group">
+                    <label>POST CODE</label>
+                    <input type="text" name="post_code" placeholder="required" required>
+                </div>
+
+                <div class="input-group">
+                    <label>I'M LOOKING FOR...</label>
+                    <select name="service" required>
+                        <option value="">Select</option>
+                        <option>Architecture main services</option>
+                        <option>Concept & design development</option>
+                        <option>Site analysis</option>
+                        <option>Architectural drawings & 3D views</option>
+                        <option>Authority approvals & permits</option>
+                        <option>Construction drawings & specifications</option>
+                        <option>Consultant coordination</option>
+                        <option>Site supervision / construction administration</option>
+                        <option>Interior design (if required)</option>
+                        <option>Project handover support</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <button type="submit" class="btn-send">SEND &rarr;</button>
+
+        </form>
+
+    </section>
+
+    </div>
+
+
+
+
+
+
+
+
+<footer class="site-footer">
+    <div class="footer-main-content">
+        <div class="branding">
+            <img class="logo" src="images/logo rs.png" alt="Logo">
+            
+        </div>
+
+        <div class="info-group">
+            <h4>DROP US A NOTE</h4>
+            <a href="mailto:info@arcstudio.com">info@arcstudio.com</a>
+            <span><p class="tagline">Crafted Spaces.Curated Moments.</p></span>
+        </div>
+
+        <div class="info-group">
+            <h4>GIVE US A CALL</h4>
+            <p><a href="https://wa.me/923200113648">WhatsApp: +92 320 011 3648</a></p>
+            <p><a href="tel:+923363201999">Call: +92 336 320 1999</a></p>
+        </div>
+
+        <div class="info-group">
+            <h4>ADDRESS</h4>
+            <p><a href="https://maps.app.goo.gl/KeDFkuuC4pdAbFpv7">Office 04 & 05, 3rd Floor, <br>Kolachi IT Park, Karachi.</a></p>
+        </div>
+
+        <div class="info-group">
+            <h4 class="SOCIAL " >SOCIAL</h4>
+            <div class="social-links">
+                <a href="https://www.instagram.com/arcstudiointeriors/"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/company/110110164/admin/dashboard/"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://www.facebook.com/profile.php?id=61584589380668"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://x.com/ArcstudioRs"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-copyright">
+        <p>© 2026 - ARC Studio Interiors. ALL RIGHTS RESERVED</p>
+        
+    </div>
+</footer>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<!-- =============js================= -->
+ <style>
+/* Main Footer Styling */
+.site-footer {
+    padding: 10px 10px;
+    background-color: #a3b8c2(0, 0%, 98%); /* Apni marzi ka color rakhein */
+}
+
+.footer-main-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; /* Columns ke darmiyan barabar space ke liye */
+    align-items: flex-start;
+    flex-wrap: wrap; /* Mobile par columns niche aa jayein ge */
+    padding: 30px;
+}
+
+/* Har column (info-group aur branding) ko 5 columns mein divide karne ke liye */
+.branding, .info-group {
+    flex: 1; /* Sab barabar width lein ge */
+    min-width: 180px; /* Mobile ke liye minimum width */
+    margin: 10px;
+}
+
+.branding .logo {
+    max-width: 150px; /* Logo ka size adjust karein */
+    margin-bottom: 10px;
+}
+
+.social-links a {
+    margin-right: 15px;
+    font-size: 1.2rem;
+    color: #333;
+}
+.social{
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+    align-items: center;
+}
+
+.footer-copyright p {
+    font-size: 0.9rem;
+    color: #555;
+    text-align: center;
+    padding-left: 40%; 
+}
+
+</style>
+
+<!-- ================= JS ================= -->
+<script>
+const header = document.getElementById('mainHeader');
+let headerVisible = true;
+
+function toggleMenu() {
+    const menu = document.getElementById('menuOverlay');
+    const mobileMenu = menu.querySelector('.mobile-menu');
+    const toggles = document.querySelectorAll('button[onclick="toggleMenu()"]');
+
+    menu.classList.toggle('active');
+    const isOpen = menu.classList.contains('active');
+
+    // Lock body scroll when open
+    document.body.style.overflow = isOpen ? 'hidden' : 'auto';
+
+    // Update aria-expanded on toggle buttons
+    toggles.forEach(btn => btn.setAttribute('aria-expanded', isOpen.toString()));
+
+    // Accessibility: hide/show mobile menu and manage focus
+    if (mobileMenu) {
+        mobileMenu.setAttribute('aria-hidden', (!isOpen).toString());
+        if (isOpen) {
+            const firstLink = mobileMenu.querySelector('.mobile-links a');
+            if (firstLink) firstLink.focus();
+        } else {
+            const mobileBtn = document.getElementById('mobileBtn') || toggles[0];
+            if (mobileBtn) mobileBtn.focus();
+        }
+    }
+
+    if (isOpen) {
+        // Hide navbar when menu is open
+        header.style.transform = 'translateY(-100%)';
+        header.style.opacity = '0';
+        headerVisible = false;
+    } else {
+        // Show navbar when menu is closed
+        header.style.transform = 'translateY(0)';
+        header.style.opacity = '1';
+        headerVisible = true;
+    }
+}
+
+// Keep navbar visible on home page (hero section)
+const heroSection = document.querySelector(".hero-bg");
+
+document.addEventListener('scroll', () => {
+    const menu = document.getElementById('menuOverlay');
+    const heroBottom = heroSection.offsetHeight;
+    const scrollPosition = window.scrollY;
+    
+    if (!menu.classList.contains('active')) {
+        if (scrollPosition < heroBottom) {
+            // Still in hero section - keep header visible
+            if (!headerVisible) {
+                header.style.transform = 'translateY(0)';
+                header.style.opacity = '1';
+                headerVisible = true;
+            }
+        } else {
+            // Scrolled past hero - hide header unless mouse is at top
+            if (headerVisible) {
+                header.style.transform = 'translateY(-100%)';
+                header.style.opacity = '0';
+                headerVisible = false;
+            }
+        }
+    }
+});
+
+// Show navbar when mouse moves to top
+document.addEventListener('mousemove', (e) => {
+    const menu = document.getElementById('menuOverlay');
+    if (!menu.classList.contains('active')) {
+        if (e.clientY < 80) {
+            // Mouse near top - show header
+            if (!headerVisible) {
+                header.style.transform = 'translateY(0)';
+                header.style.opacity = '1';
+                headerVisible = true;
+            }
+        } else {
+            // Mouse away from top - check if scrolled past hero
+            const heroBottom = heroSection.offsetHeight;
+            const scrollPosition = window.scrollY;
+            if (scrollPosition > heroBottom && headerVisible) {
+                header.style.transform = 'translateY(-100%)';
+                header.style.opacity = '0';
+                headerVisible = false;
+            }
+        }
+    }
+});
+
+const heroImages = [
+    "/images/baliresort/hero1.png",
+    "/images/baliresort/1289.jpeg", 
+    "/images/baliresort/123.jpg.jpeg",
+];
+
+let currentHero = 0;
+const heroSection2 = document.querySelector(".hero-bg");
+
+// set first image
+heroSection2.style.backgroundImage = `url('${heroImages[0]}')`;
+
+setInterval(() => {
+    currentHero = (currentHero + 1) % heroImages.length;
+    heroSection2.style.backgroundImage = `url('${heroImages[currentHero]}')`;
+}, 3000); // 5 seconds
+
+
+</script>
+<!-- Lazy-load non-critical images -->
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  document.querySelectorAll('img').forEach(img=>{
+    if(!img.classList.contains('logo') && !img.closest('header') && !img.hasAttribute('loading')){
+      img.loading = 'lazy';
+    }
+  });
+});
+</script>
+
+<!-- Tailwind (deferred to end) -->
+<script src="https://cdn.tailwindcss.com" defer></script>
+
+<!-- App JS (deferred) -->
+<script src="app.js" defer></script>
+</body>
+</html>
